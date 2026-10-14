@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>加茂遺跡スタンプラリー</title>
+
+<link rel="stylesheet" href="style.css?ver=9">
+</head>
+
+<body>
+
+<main>
+
+<!-- =========================
+完成画像エリア
+========================= -->
+
+<div class="stamp-card" id="stampCard">
+
+<!-- ゴール時に表示 -->
+<div class="title-area">
+<div
+id="completeTitle"
+class="complete-title"
+aria-label="加茂遺跡スタンプラリー"
+></div>
+</div>
+
+
+<!-- 3 × 3 -->
+<div class="grid" id="grid"></div>
+
+
+<!-- ゴール時に表示 -->
+<div class="time-area">
+<div
+id="goalTime"
+class="goal-time"
+></div>
+</div>
+
+</div>
+
+
+<!-- 完成記念画像の保存ボタン -->
+<button
+id="saveImageButton"
+class="save-image-button"
+type="button"
+onclick="saveCompletedImage()"
+>
+完成記念画像を保存
+</button>
+
+<!-- iPhoneなどで画像を表示するための画面 -->
+<div id="saveImageModal" class="save-image-modal" hidden>
+<div class="save-image-panel">
+<p>画像を長押しして「写真に保存」を選んでください</p>
+
+<img
+id="savedImagePreview"
+alt="完成記念画像"
+>
+
+<button type="button" onclick="closeSaveImageModal()">
+閉じる
+</button>
+</div>
+</div>
+
+
+<!-- =========================
+QR読み取り
+========================= -->
+
+<!--
+ブラウザから直接QRコードを読み取る場合の処理
+-->
+<!--
+<button
+id="cameraButton"
+class="camera-button"
+onclick="showCameraGuide()"
+>
+📷 QRコードを読み取る
+</button>
+-->
+
+
+<!-- カメラ許可前の説明 -->
+
+<div
+id="cameraGuide"
+class="camera-guide"
+>
+
+<div class="guide-box">
+
+<div class="guide-title">
+QRコードを読み取ります
+</div>
+
+<p>
+QRコードを読み取るために<br>
+スマートフォンのカメラを使います。
+</p>
+
+<p>
+次の画面でカメラの使用を<br>
+<strong>「許可」</strong>してください。
+</p>
+
+<button
+class="allow-button"
+onclick="startCamera()"
+>
+カメラを使う
+</button>
+
+<button
+class="cancel-button"
+onclick="closeCameraGuide()"
+>
+キャンセル
+</button>
+
+</div>
+
+</div>
+
+
+<!-- カメラ -->
+
+<div
+id="cameraArea"
+class="camera-area"
+>
+
+<video
+id="cameraVideo"
+autoplay
+playsinline
+></video>
+
+<button onclick="stopCamera()">
+カメラを閉じる
+</button>
+
+</div>
+
+
+<!-- 開発用 -->
+
+<button
+class="reset-button"
+onclick="resetStamps()"
+>
+リセット（開発用）
+</button>
+
+</main>
+
+
+<!-- スタンプ取得メッセージ -->
+
+<div
+id="stampMessage"
+class="stamp-message"
+></div>
+
+
+<script src="script.js?ver=5"></script>
+
+</body>
+</html>
