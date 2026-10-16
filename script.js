@@ -52,6 +52,33 @@ showCompletedState();
 
 
 /* ========================================
+所要時間の計算
+======================================== */
+function getElapsedTime() {
+
+const start = localStorage.getItem("startTime");
+const goal = localStorage.getItem("goalTime");
+
+if (!start || !goal) return "";
+
+const elapsed = new Date(goal) - new Date(start);
+
+if (!Number.isFinite(elapsed) || elapsed < 0) return "";
+
+const totalMinutes = Math.floor(elapsed / 60000);
+
+const hours = Math.floor(totalMinutes / 60);
+const minutes = totalMinutes % 60;
+
+if (hours > 0) {
+return `所要時間 ${hours}時間${minutes}分`;
+}
+
+return `所要時間 ${minutes}分`;
+}
+
+
+/* ========================================
 スタンプラリー開始
 ======================================== */
 
@@ -217,7 +244,7 @@ if (!localStorage.getItem("startTime")) {
 
 alert(
 "スタートの記録が見つかりません。\n" +
-"受付でスタート用QRコードを読み取ってください。"
+"受付にてスタッフにお尋ねください。\n" +
 );
 
 updateStartDisplay();
@@ -747,6 +774,8 @@ await wait(500);
 
 showSaveImageButton(true);
 
+updateElapsedTimeDisplay();
+
 }
 
 
@@ -910,6 +939,8 @@ time.style.visibility =
 "visible";
 
 showSaveImageButton(false);
+
+updateElapsedTimeDisplay();
 
 }
 
@@ -1163,6 +1194,8 @@ render();
 hideSaveImageButton();
 
 updateStartDisplay();
+
+updateElapsedTimeDisplay();
 
 }
 
@@ -1633,5 +1666,16 @@ savePreviewURL = null;
 
 }
 
+// 所要時間表示用の関数
+function updateElapsedTimeDisplay() {
+
+const display = document.getElementById("elapsedTimeDisplay");
+if (!display) return;
+
+const elapsedText = getElapsedTime();
+
+display.hidden = !elapsedText;
+display.textContent = elapsedText;
+}
 
 // JavaScript Document
