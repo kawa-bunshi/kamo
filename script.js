@@ -215,6 +215,18 @@ grid.appendChild(cell);
 
 async function acquireStamp(spot) {
 
+// スポット0で開始していない場合
+if (!localStorage.getItem("startTime")) {
+
+alert(
+"スタートの記録が見つかりません。\n" +
+"受付でスタート用QRコードを読み取ってください。"
+);
+
+updateStartDisplay();
+return;
+}
+
 if (animationRunning) {
 return;
 }
@@ -327,17 +339,6 @@ animationRunning = false;
 
 }
 
-// スポット0で開始していない場合
-if (!localStorage.getItem("startTime")) {
-
-alert(
-"スタートの記録が見つかりません。\n" +
-"受付でスタート用QRコードを読み取ってください。"
-);
-
-updateStartDisplay();
-return;
-}
 
 /* ========================================
 スタンプ取得アニメーション
