@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0"
 
 <title>加茂遺跡スタンプラリー</title>
 
-<link rel="stylesheet" href="style.css?ver=9">
+<link rel="stylesheet" href="style.css?ver=10">
 </head>
 
 <body>
@@ -22,7 +22,16 @@ content="width=device-width, initial-scale=1.0"
 完成画像エリア
 ========================= -->
 
-<div class="stamp-card" id="stampCard">
+<!-- スポット0を読む前の案内 -->
+<div id="startGuide" class="start-guide">
+<p>受付でスタート用QRコードを読み取ってください</p>
+</div>
+
+<!-- スタート時刻 -->
+<div id="startTimeDisplay" class="start-time-display" hidden></div>
+
+<!-- スポット0を読むまでは非表示 -->
+<div class="stamp-card" id="stampCard" hidden>
 
 <!-- ゴール時に表示 -->
 <div class="title-area">
@@ -176,7 +185,7 @@ class="stamp-message"
 ></div>
 
 
-<script src="script.js?ver=5"></script>
+<script src="script.js?ver=6"></script>
 
 </body>
 </html>

@@ -8,56 +8,122 @@ let animationRunning = false;
 起動
 ======================================== */
 
-document.addEventListener(
-"DOMContentLoaded",
-() => {
+document.addEventListener("DOMContentLoaded", () => {
 
 render();
 
-const params =
-new URLSearchParams(
-location.search
-);
+const params = new URLSearchParams(location.search);
+const spotParam = params.get("spot");
 
-const spot =
-Number(
-params.get("spot")
-);
+// QRコードから開いた場合
+if (spotParam !== null) {
 
+const spot = Number(spotParam);
 
-/* QRから開いた場合 */
+// URLからspotパラメータを取り除く
+const url = new URL(location.href);
+url.searchParams.delete("spot");
+history.replaceState(null, "", url.pathname + url.search + url.hash);
 
 if (
 Number.isInteger(spot) &&
-spot >= 1 &&
+spot >= 0 &&
 spot <= TOTAL_STAMPS
 ) {
 
-history.replaceState(
-null,
-"",
-location.pathname
+if (spot === 0) {
+startRally();
+} else {
+acquireStamp(spot);
+}
+
+}
+
+}
+
+updateStartDisplay();
+
+// 完成済みなら刻印を再表示
+if (getStampCount() === TOTAL_STAMPS) {
+showCompletedState();
+}
+
+});
+
+
+/* ========================================
+スタンプラリー開始
+======================================== */
+
+function startRally() {
+
+// すでに開始していれば時刻を変更しない
+if (!localStorage.getItem("startTime")) {
+
+localStorage.setItem(
+"startTime",
+new Date().toISOString()
 );
 
-acquireStamp(spot);
+}
 
+updateStartDisplay();
+
+// 初回だけ案内を表示
+if (getStampCount() === 0) {
+const message = document.getElementById("stampMessage");
+
+message.textContent = "準備完了！";
+message.classList.add("show");
+
+setTimeout(() => {
+message.classList.remove("show");
+}, 1800);
+}
+
+}
+
+
+/* ========================================
+スタート状態の表示
+======================================== */
+
+function updateStartDisplay() {
+
+const startTime = localStorage.getItem("startTime");
+
+const guide = document.getElementById("startGuide");
+const card = document.getElementById("stampCard");
+const display = document.getElementById("startTimeDisplay");
+
+const started = Boolean(startTime);
+
+guide.hidden = started;
+card.hidden = !started;
+display.hidden = !started;
+
+if (!started) {
+display.textContent = "";
 return;
 }
 
+const date = new Date(startTime);
 
-/* すでにコンプリート済み */
-
-if (
-getStampCount() ===
-TOTAL_STAMPS
-) {
-
-showCompletedState();
-
+if (Number.isNaN(date.getTime())) {
+display.textContent = "スタート済み";
+return;
 }
 
+const pad = n => String(n).padStart(2, "0");
+
+display.textContent =
+"スタート " +
+date.getFullYear() + "." +
+pad(date.getMonth() + 1) + "." +
+pad(date.getDate()) + " " +
+pad(date.getHours()) + ":" +
+pad(date.getMinutes());
 }
-);
 
 
 /* ========================================
@@ -258,6 +324,17 @@ animationRunning = false;
 
 }
 
+// スポット0で開始していない場合
+if (!localStorage.getItem("startTime")) {
+
+alert(
+"スタートの記録が見つかりません。\n" +
+"受付でスタート用QRコードを読み取ってください。"
+);
+
+updateStartDisplay();
+return;
+}
 
 /* ========================================
 スタンプ取得アニメーション
@@ -1083,6 +1160,8 @@ document.getElementById(
 render();
 
 hideSaveImageButton();
+
+updateStartDisplay();
 
 }
 

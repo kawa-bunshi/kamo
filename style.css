@@ -686,3 +686,33 @@ color: white;
 
 font-size: 16px;
 }
+
+/* スタート前の案内 */
+.start-guide {
+margin: 30px auto;
+padding: 24px 18px;
+max-width: 480px;
+border-radius: 16px;
+background: #e2ead9;
+color: #304d3b;
+text-align: center;
+font-size: 17px;
+line-height: 1.8;
+}
+
+/* スタート時刻 */
+.start-time-display {
+margin: 10px auto;
+text-align: center;
+color: #304d3b;
+font-family: "MPLUS", sans-serif;
+font-size: 15px;
+}
+
+/* hidden属性をCSSより優先する */
+.stamp-card[hidden],
+.start-guide[hidden],
+.start-time-display[hidden] {
+display: none !important;
+}
+
