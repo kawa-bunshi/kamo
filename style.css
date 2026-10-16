@@ -729,3 +729,16 @@ font-weight: bold;
 display: none !important;
 }
 
+#elapsedTimeDisplay {
+display: block;
+width: 100%;
+text-align: center;
+margin: 8px auto 14px;
+color: #304d3b;
+font-size: 20px;
+font-weight: bold;
+}
+
+#elapsedTimeDisplay[hidden] {
+display: none;
+}

@@ -65,8 +65,13 @@ const elapsed = new Date(goal) - new Date(start);
 
 if (!Number.isFinite(elapsed) || elapsed < 0) return "";
 
-const totalMinutes = Math.floor(elapsed / 60000);
+const totalSeconds = Math.floor(elapsed / 1000);
 
+if (totalSeconds < 60) {
+return `所要時間 ${totalSeconds}秒`;
+}
+
+const totalMinutes = Math.floor(totalSeconds / 60);
 const hours = Math.floor(totalMinutes / 60);
 const minutes = totalMinutes % 60;
 
