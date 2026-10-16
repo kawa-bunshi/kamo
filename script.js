@@ -10,8 +10,6 @@ let animationRunning = false;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-alert("JavaScriptが開始しました");
-
 render();
 
 const params = new URLSearchParams(location.search);
@@ -34,7 +32,6 @@ spot <= TOTAL_STAMPS
 ) {
 
 if (spot === 0) {
-alert("スポット0を認識しました");
 startRally();
 } else {
 acquireStamp(spot);
