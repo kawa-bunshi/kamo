@@ -244,7 +244,7 @@ if (!localStorage.getItem("startTime")) {
 
 alert(
 "スタートの記録が見つかりません。\n" +
-"受付にてスタッフにお尋ねください。\n" +
+"受付にてスタッフにお尋ねください。\n"
 );
 
 updateStartDisplay();
