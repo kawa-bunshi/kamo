@@ -32,6 +32,7 @@ spot <= TOTAL_STAMPS
 ) {
 
 if (spot === 0) {
+alert("スポット0を認識しました");
 startRally();
 } else {
 acquireStamp(spot);
