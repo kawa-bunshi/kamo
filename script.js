@@ -10,6 +10,8 @@ let animationRunning = false;
 
 document.addEventListener("DOMContentLoaded", () => {
 
+alert("JavaScriptが開始しました");
+
 render();
 
 const params = new URLSearchParams(location.search);
