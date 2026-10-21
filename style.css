@@ -742,3 +742,15 @@ font-weight: bold;
 #elapsedTimeDisplay[hidden] {
 display: none;
 }
+
+/* スタンプカード全体の外枠 */
+#stampCard {
+border: 2px solid #a5b59e;
+box-sizing: border-box;
+}
+
+/* 9マスそれぞれの境界線 */
+#grid .cell {
+border: 1px solid #b5c3ad;
+box-sizing: border-box;
+}
