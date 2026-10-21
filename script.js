@@ -702,6 +702,8 @@ setTimeout(
 
 async function completeSequence() {
 
+document.getElementById("stampCard").classList.add("completed");
+
 /*
 * まず9枚完成状態を
 * 少し見せる
@@ -918,6 +920,8 @@ return (
 ======================================== */
 
 function showCompletedState() {
+
+document.getElementById("stampCard").classList.add("completed");
 
 const title =
 document.getElementById(
@@ -1201,6 +1205,8 @@ hideSaveImageButton();
 updateStartDisplay();
 
 updateElapsedTimeDisplay();
+
+document.getElementById("stampCard").classList.remove("completed");
 
 }
 
