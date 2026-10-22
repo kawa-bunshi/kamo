@@ -744,10 +744,10 @@ display: none;
 }
 
 /* スタンプカード全体の外枠 */
-#stampCard {
+/*#stampCard {
 outline: 2px solid #a5b59e;
 outline-offset: 0;
-}
+}*/
 
 /* 9マスそれぞれの境界線 */
 #grid .cell {
@@ -758,4 +758,48 @@ box-shadow: inset 0 0 0 1px #b5c3ad;
 /* 完成したら9マスの境界線を消す */
 #stampCard .completed #grid .cell {
 box-shadow: none;
+}
+
+/* 外枠の色と太さ */
+#stampCard {
+outline: 5px solid var(--frame-color, #8FA68A);
+outline-offset: 0;
+}
+
+/* 完成後の色選択 */
+.frame-color-picker {
+margin: 24px auto 18px;
+text-align: center;
+}
+
+.frame-color-picker[hidden] {
+display: none !important;
+}
+
+.frame-color-picker p {
+margin: 0 0 14px;
+color: #493126;
+font-size: 17px;
+}
+
+.frame-color-options {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+}
+
+.frame-color-option {
+width: 38px;
+height: 38px;
+border: 2px solid transparent;
+border-radius: 50%;
+cursor: pointer;
+box-sizing: border-box;
+}
+
+.frame-color-option.selected {
+border: 3px solid #333;
+box-shadow: 0 0 0 2px white inset;
+transform: scale(1.12);
 }

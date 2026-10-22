@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0"
 
 <title>加茂遺跡スタンプラリー</title>
 
-<link rel="stylesheet" href="style.css?ver=16">
+<link rel="stylesheet" href="style.css?ver=17">
 </head>
 
 <body>
@@ -59,6 +59,37 @@ class="goal-time"
 
 </div>
 
+
+<div id="frameColorPicker" class="frame-color-picker" hidden>
+<p>好きな色で仕上げよう！</p>
+
+<div class="frame-color-options">
+<button type="button" class="frame-color-option"
+data-color="#8FA68A" aria-label="若草色"
+onclick="setFrameColor('#8FA68A')"
+style="background:#8FA68A"></button>
+
+<button type="button" class="frame-color-option"
+data-color="#C65A3A" aria-label="朱色"
+onclick="setFrameColor('#C65A3A')"
+style="background:#C65A3A"></button>
+
+<button type="button" class="frame-color-option"
+data-color="#526C91" aria-label="藍色"
+onclick="setFrameColor('#526C91')"
+style="background:#526C91"></button>
+
+<button type="button" class="frame-color-option"
+data-color="#D2A044" aria-label="山吹色"
+onclick="setFrameColor('#D2A044')"
+style="background:#D2A044"></button>
+
+<button type="button" class="frame-color-option"
+data-color="#94739C" aria-label="紫色"
+onclick="setFrameColor('#94739C')"
+style="background:#94739C"></button>
+</div>
+</div>
 
 <!-- 完成記念画像の保存ボタン -->
 <button
@@ -187,7 +218,7 @@ class="stamp-message"
 ></div>
 
 
-<script src="script.js?ver=16"></script>
+<script src="script.js?ver=17"></script>
 
 </body>
 </html>

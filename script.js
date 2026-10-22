@@ -157,6 +157,65 @@ pad(date.getHours()) + ":" +
 pad(date.getMinutes());
 }
 
+/* ========================================
+フレームカラーの変更
+======================================== */
+
+const FRAME_COLORS = [
+"#8FA68A",
+"#C65A3A",
+"#526C91",
+"#D2A044",
+"#94739C"
+];
+
+function getFrameColor() {
+const saved = localStorage.getItem("frameColor");
+
+return FRAME_COLORS.includes(saved)
+? saved
+: FRAME_COLORS[0];
+}
+
+function setFrameColor(color) {
+if (!FRAME_COLORS.includes(color)) return;
+
+localStorage.setItem("frameColor", color);
+applyFrameColor();
+}
+
+function applyFrameColor() {
+const color = getFrameColor();
+
+const card = document.getElementById("stampCard");
+
+if (card) {
+card.style.setProperty("--frame-color", color);
+}
+
+document.querySelectorAll(".frame-color-option")
+.forEach(button => {
+
+const selected = button.dataset.color === color;
+
+button.classList.toggle("selected", selected);
+button.setAttribute("aria-pressed", String(selected));
+});
+}
+
+function showFrameColorPicker() {
+const picker = document.getElementById("frameColorPicker");
+if (!picker) return;
+
+picker.hidden = false;
+applyFrameColor();
+}
+
+function hideFrameColorPicker() {
+const picker = document.getElementById("frameColorPicker");
+if (picker) picker.hidden = true;
+}
+
 
 /* ========================================
 グリッド描画
