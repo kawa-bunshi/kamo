@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 render();
 
+applyFrameColor();
+
 const params = new URLSearchParams(location.search);
 const spotParam = params.get("spot");
 
@@ -308,7 +310,7 @@ if (!localStorage.getItem("startTime")) {
 
 alert(
 "スタートの記録が見つかりません。\n" +
-"受付にてスタッフにお尋ねください。\n"
+"お近くのスタッフにお尋ねください。\n"
 );
 
 updateStartDisplay();
@@ -838,6 +840,8 @@ vibrate(80);
 /*少し余韻を置いて保存ボタンを表示*/
 await wait(500);
 
+showFrameColorPicker();
+
 showSaveImageButton(true);
 
 updateElapsedTimeDisplay();
@@ -1005,6 +1009,8 @@ title.style.visibility =
 
 time.style.visibility =
 "visible";
+
+showFrameColorPicker();
 
 showSaveImageButton(false);
 
@@ -1258,6 +1264,9 @@ document.getElementById(
 
 
 render();
+
+hideFrameColorPicker();
+applyFrameColor();
 
 hideSaveImageButton();
 
@@ -1567,6 +1576,20 @@ size * 0.965,
 size * 0.94
 );
 
+// 保存画像に選択した色の外枠を描く
+ctx.save();
+
+ctx.strokeStyle = getFrameColor();
+ctx.lineWidth = 10;
+
+ctx.strokeRect(
+5,
+5,
+1190,
+1190
+);
+
+ctx.restore();
 
 /* JPEGに変換 */
 return new Promise((resolve, reject) => {
