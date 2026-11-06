@@ -251,14 +251,28 @@ localStorage.getItem(
 )
 ) {
 
-const img =
-document.createElement("img");
+const img = document.createElement("img");
 
-img.src =
-`images/img_${i}.jpg`;
+const imagePath = `images/img_${i}.jpg`;
 
-img.alt =
-`スタンプ ${i}`;
+img.alt = `スタンプ ${i}`;
+
+let retryCount = 0;
+const maxRetries = 2;
+
+img.onerror = () => {
+if (retryCount < maxRetries) {
+retryCount++;
+
+setTimeout(() => {
+img.src = `${imagePath}?retry=${retryCount}`;
+}, 1500);
+} else {
+console.warn("画像の読み込み失敗:", imagePath);
+}
+};
+
+img.src = imagePath;
 
 cell.appendChild(img);
 
@@ -464,13 +478,12 @@ document.body.appendChild(img);
 */
 
 try {
-
 await img.decode();
-
 } catch (e) {
+console.warn("スタンプ画像を読み込めませんでした", e);
 
-// decode非対応等でも続行
-
+img.remove();
+return;
 }
 
 
