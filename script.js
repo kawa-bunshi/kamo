@@ -1,4 +1,5 @@
 const TOTAL_STAMPS = 9;
+const IMAGE_VERSION = 3;
 
 let cameraStream = null;
 let animationRunning = false;
@@ -253,7 +254,7 @@ localStorage.getItem(
 
 const img = document.createElement("img");
 
-const imagePath = `images/img_${i}.jpg?v=2`;
+const imagePath = `images/img_${i}.jpg?v=${IMAGE_VERSION}`;
 
 img.alt = `スタンプ ${i}`;
 
@@ -465,7 +466,7 @@ const img =
 document.createElement("img");
 
 img.src =
-`images/img_${spot}.jpg?v=2`;
+`images/img_${spot}.jpg?v=${IMAGE_VERSION}`;
 
 img.className =
 "flying-stamp";
