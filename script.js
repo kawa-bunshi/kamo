@@ -253,7 +253,7 @@ localStorage.getItem(
 
 const img = document.createElement("img");
 
-const imagePath = `images/img_${i}.jpg`;
+const imagePath = `images/img_${i}.jpg?v=2`;
 
 img.alt = `スタンプ ${i}`;
 
@@ -465,7 +465,7 @@ const img =
 document.createElement("img");
 
 img.src =
-`images/img_${spot}.jpg`;
+`images/img_${spot}.jpg?v=2`;
 
 img.className =
 "flying-stamp";
