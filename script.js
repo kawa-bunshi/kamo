@@ -1,5 +1,5 @@
 const TOTAL_STAMPS = 9;
-const IMAGE_VERSION = 3;
+const IMAGE_VERSION = 4;
 
 let cameraStream = null;
 let animationRunning = false;
