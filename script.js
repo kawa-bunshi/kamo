@@ -1,7 +1,7 @@
 //年度管理
 const RALLY_YEAR = 2026;
 //画像のバージョン（画像を変えたら数字を増やす）
-const IMAGE_VERSION = 5;
+const IMAGE_VERSION = 6;
 //スタンプ（マス）の数
 const TOTAL_STAMPS = 9;
 
@@ -69,8 +69,8 @@ showCompletedState();
 ======================================== */
 function getElapsedTime() {
 
-const start = localStorage.getItem("startTime");
-const goal = localStorage.getItem("goalTime");
+const start = localStorage.getItem(storageKey("startTime"));
+const goal = localStorage.getItem(storageKey("goalTime"));
 
 if (!start || !goal) return "";
 
@@ -103,10 +103,10 @@ return `所要時間 ${minutes}分`;
 function startRally() {
 
 // すでに開始していれば時刻を変更しない
-if (!localStorage.getItem("startTime")) {
+if (!localStorage.getItem(storageKey("startTime"))) {
 
 localStorage.setItem(
-"startTime",
+storageKey("startTime"),
 new Date().toISOString()
 );
 
@@ -135,7 +135,7 @@ message.classList.remove("show");
 
 function updateStartDisplay() {
 
-const startTime = localStorage.getItem("startTime");
+const startTime = localStorage.getItem(storageKey("startTime"));
 
 const guide = document.getElementById("startGuide");
 const card = document.getElementById("stampCard");
@@ -183,7 +183,7 @@ const FRAME_COLORS = [
 ];
 
 function getFrameColor() {
-const saved = localStorage.getItem("frameColor");
+const saved = localStorage.getItem(storageKey("frameColor"));
 
 return FRAME_COLORS.includes(saved)
 ? saved
@@ -193,7 +193,7 @@ return FRAME_COLORS.includes(saved)
 function setFrameColor(color) {
 if (!FRAME_COLORS.includes(color)) return;
 
-localStorage.setItem("frameColor", color);
+localStorage.setItem(storageKey("frameColor", color));
 applyFrameColor();
 }
 
@@ -258,7 +258,7 @@ cell.dataset.spot = i;
 
 if (
 localStorage.getItem(
-"stamp_" + i
+storageKey("stamp_" + i)
 )
 ) {
 
@@ -331,7 +331,7 @@ grid.appendChild(cell);
 async function acquireStamp(spot) {
 
 // スポット0で開始していない場合
-if (!localStorage.getItem("startTime")) {
+if (!localStorage.getItem(storageKey("startTime"))) {
 
 alert(
 "スタートの記録が見つかりません。\n" +
@@ -348,7 +348,7 @@ return;
 
 
 const key =
-"stamp_" + spot;
+storageKey("stamp_" + spot);
 
 
 /* 取得済み */
@@ -391,12 +391,12 @@ count === TOTAL_STAMPS
 
 if (
 !localStorage.getItem(
-"goalTime"
+storageKey("goalTime")
 )
 ) {
 
 localStorage.setItem(
-"goalTime",
+storageKey("goalTime"),
 new Date().toISOString()
 );
 
@@ -950,7 +950,7 @@ function getGoalTimeText() {
 
 const stored =
 localStorage.getItem(
-"goalTime"
+storageKey("goalTime")
 );
 
 
@@ -1237,7 +1237,7 @@ i++
 
 if (
 localStorage.getItem(
-"stamp_" + i
+storageKey("stamp_" + i)
 )
 ) {
 
@@ -1646,7 +1646,7 @@ try {
 const blob = await createCompletedImage();
 
 const date = new Date(
-localStorage.getItem("goalTime")
+localStorage.getItem(storageKey("goalTime"))
 );
 
 const pad = n => String(n).padStart(2, "0");
