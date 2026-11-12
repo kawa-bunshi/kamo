@@ -1,5 +1,15 @@
+//年度管理
+const RALLY_YEAR = 2026;
+//画像のバージョン（画像を変えたら数字を増やす）
+const IMAGE_VERSION = 5;
+//スタンプ（マス）の数
 const TOTAL_STAMPS = 9;
-const IMAGE_VERSION = 4;
+
+const storageKey = (name) =>
+`kamo_${RALLY_YEAR}_${name}`;
+
+const imagePath = (spot) =>
+`images/${RALLY_YEAR}/img_${spot}.jpg?v=${IMAGE_VERSION}`;
 
 let cameraStream = null;
 let animationRunning = false;
@@ -254,7 +264,7 @@ localStorage.getItem(
 
 const img = document.createElement("img");
 
-const imagePath = `images/img_${i}.jpg?v=${IMAGE_VERSION}`;
+const src = imagePath(i);
 
 img.alt = `スタンプ ${i}`;
 
@@ -266,14 +276,14 @@ if (retryCount < maxRetries) {
 retryCount++;
 
 setTimeout(() => {
-img.src = `${imagePath}?retry=${retryCount}`;
+img.src = `${src}&retry=${retryCount}`;
 }, 1500);
 } else {
-console.warn("画像の読み込み失敗:", imagePath);
+console.warn("画像の読み込み失敗:", src);
 }
 };
 
-img.src = imagePath;
+img.src = src;
 
 cell.appendChild(img);
 
@@ -465,8 +475,7 @@ return;
 const img =
 document.createElement("img");
 
-img.src =
-`images/img_${spot}.jpg?v=${IMAGE_VERSION}`;
+img.src = imagePath(spot);
 
 img.className =
 "flying-stamp";
@@ -1537,8 +1546,8 @@ ctx.fillRect(0, 0, size, size);
 /* 9枚のスタンプを合成 */
 const images = await Promise.all(
 Array.from(
-{ length: 9 },
-(_, i) => loadImage(`images/img_${i + 1}.jpg`)
+{ length: TOTAL_STAMPS },
+(_, i) => loadImage(imagePath(i + 1))
 )
 );
 
