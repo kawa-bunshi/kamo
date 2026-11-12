@@ -193,7 +193,7 @@ return FRAME_COLORS.includes(saved)
 function setFrameColor(color) {
 if (!FRAME_COLORS.includes(color)) return;
 
-localStorage.setItem(storageKey("frameColor", color));
+localStorage.setItem(storageKey("frameColor"), color);
 applyFrameColor();
 }
 
