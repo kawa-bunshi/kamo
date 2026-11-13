@@ -1832,12 +1832,12 @@ webFontsPromise = (async () => {
 const fonts = [
 new FontFace(
 "MPLUS Rounded",
-'url("fonts/test/MPLUSRounded1c-Bold.woff2")',
+'url("fonts/MPLUSRounded1c-Bold.woff2")',
 { weight: "700" }
 ),
 new FontFace(
 "MPLUS",
-'url("fonts/test/MPLUS1p-Regular.woff2")',
+'url("fonts/MPLUS1p-Regular.woff2")',
 { weight: "400" }
 )
 ];
