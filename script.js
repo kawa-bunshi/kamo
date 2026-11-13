@@ -1576,10 +1576,7 @@ cellSize
 
 
 /* Webフォントの読み込み */
-await Promise.all([
-document.fonts.load('700 64px "MPLUS Rounded"'),
-document.fonts.load('400 40px "MPLUS"')
-]);
+await loadWebFonts();
 
 
 /* タイトル */
@@ -1804,6 +1801,17 @@ display.textContent = elapsedText;
 
 // フォント表示の処理
 async function loadWebFonts() {
+// Webフォントの読み込み（同時に複数回実行しない）
+let webFontsPromise = null;
+
+function loadWebFonts() {
+
+if (webFontsPromise) {
+return webFontsPromise;
+}
+
+webFontsPromise = (async () => {
+
 const fonts = [
 new FontFace(
 "MPLUS Rounded",
@@ -1817,18 +1825,23 @@ new FontFace(
 )
 ];
 
-try {
-await Promise.all(
-fonts.map(async font => {
-await font.load();
-document.fonts.add(font);
-})
+const loadedFonts = await Promise.all(
+fonts.map(font => font.load())
 );
 
+loadedFonts.forEach(font => document.fonts.add(font));
+
 document.documentElement.classList.add("fonts-ready");
-} catch (error) {
+
+})();
+
+// 失敗した場合は次回再試行できるようにする
+webFontsPromise.catch(error => {
+webFontsPromise = null;
 console.warn("フォントの読み込みに失敗しました", error);
-}
+});
+
+return webFontsPromise;
 }
 
 
