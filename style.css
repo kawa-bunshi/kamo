@@ -2,7 +2,20 @@
 Web Font
 ======================================== */
 
-@font-face {
+/* Webフォント読み込み完了後に適用 */
+.fonts-ready body,
+.fonts-ready .goal-time,
+.fonts-ready .start-time-display {
+font-family: "MPLUS", sans-serif;
+}
+
+.fonts-ready .complete-title,
+.fonts-ready .stamp-message,
+.fonts-ready .save-image-button {
+font-family: "MPLUS Rounded", sans-serif;
+}
+
+/*@font-face {
 font-family: "MPLUS Rounded", sans-serif;
 src: url("fonts/MPLUSRounded1c-Bold.woff2");
 font-weight: 700;
@@ -14,7 +27,7 @@ font-family: "MPLUS", sans-serif;
 src: url("fonts/MPLUS1p-Regular.woff2");
 font-weight: 400;
 font-display: swap;
-}
+}*/
 
 
 /* ========================================
@@ -758,7 +771,7 @@ box-shadow: inset 0 0 0 1px #b5c3ad;
 }
 
 /* 完成したら9マスの境界線を消す */
-#stampCard .completed #grid .cell {
+#stampCard.completed #grid .cell {
 box-shadow: none;
 }
 

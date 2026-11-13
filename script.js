@@ -61,6 +61,12 @@ if (getStampCount() === TOTAL_STAMPS) {
 showCompletedState();
 }
 
+window.addEventListener("load", () => {
+setTimeout(loadWebFonts, 1000);
+});
+
+
+
 /*document.getElementById("loading")?.remove();*/
 
 });
@@ -1795,5 +1801,35 @@ const elapsedText = getElapsedTime();
 display.hidden = !elapsedText;
 display.textContent = elapsedText;
 }
+
+// フォント表示の処理
+async function loadWebFonts() {
+const fonts = [
+new FontFace(
+"MPLUS Rounded",
+'url("fonts/MPLUSRounded1c-Bold.woff2")',
+{ weight: "700" }
+),
+new FontFace(
+"MPLUS",
+'url("fonts/MPLUS1p-Regular.woff2")',
+{ weight: "400" }
+)
+];
+
+try {
+await Promise.all(
+fonts.map(async font => {
+await font.load();
+document.fonts.add(font);
+})
+);
+
+document.documentElement.classList.add("fonts-ready");
+} catch (error) {
+console.warn("フォントの読み込みに失敗しました", error);
+}
+}
+
 
 // JavaScript Document
