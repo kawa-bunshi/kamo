@@ -1799,8 +1799,6 @@ display.hidden = !elapsedText;
 display.textContent = elapsedText;
 }
 
-// フォント表示の処理
-async function loadWebFonts() {
 // Webフォントの読み込み（同時に複数回実行しない）
 let webFontsPromise = null;
 
