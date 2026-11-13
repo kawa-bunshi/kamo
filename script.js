@@ -61,7 +61,7 @@ if (getStampCount() === TOTAL_STAMPS) {
 showCompletedState();
 }
 
-document.getElementById("loading")?.remove();
+/*document.getElementById("loading")?.remove();*/
 
 });
 
