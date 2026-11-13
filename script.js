@@ -1267,7 +1267,11 @@ return count;
 
 function resetStamps() {
 
-localStorage.clear();
+/*localStorage.clear();*/
+localStorage.removeItem(storageKey("stamps"));
+localStorage.removeItem(storageKey("startTime"));
+localStorage.removeItem(storageKey("goalTime"));
+localStorage.removeItem(storageKey("frameColor"));
 
 animationRunning = false;
 
