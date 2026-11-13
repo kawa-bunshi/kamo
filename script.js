@@ -315,14 +315,14 @@ cell.appendChild(q);
 マスを押すとスタンプ取得
 ------------------------- */
 
-cell.addEventListener(
+/*cell.addEventListener(
 "click",
 () => {
 
 acquireStamp(i);
 
 }
-);
+);*/
 
 
 grid.appendChild(cell);
