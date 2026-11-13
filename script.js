@@ -1,7 +1,7 @@
 //年度管理
 const RALLY_YEAR = 2026;
 //画像のバージョン（画像を変えたら数字を増やす）
-const IMAGE_VERSION = 6;
+const IMAGE_VERSION = 7;
 //スタンプ（マス）の数
 const TOTAL_STAMPS = 9;
 
@@ -60,6 +60,8 @@ updateStartDisplay();
 if (getStampCount() === TOTAL_STAMPS) {
 showCompletedState();
 }
+
+document.getElementById("loading")?.remove();
 
 });
 
