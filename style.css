@@ -3,14 +3,14 @@ Web Font
 ======================================== */
 
 @font-face {
-font-family: "MPLUS Rounded";
+font-family: "MPLUS Rounded", sans-serif;
 src: url("fonts/MPLUSRounded1c-Bold.woff2");
 font-weight: 700;
 font-display: swap;
 }
 
 @font-face {
-font-family: "MPLUS";
+font-family: "MPLUS", sans-serif;
 src: url("fonts/MPLUS1p-Regular.woff2");
 font-weight: 400;
 font-display: swap;
