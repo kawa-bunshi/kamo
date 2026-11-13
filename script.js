@@ -1575,12 +1575,29 @@ cellSize
 });
 
 
-/* Webフォントの読み込み */
-await loadWebFonts();
+/* Webフォントを最大10秒待つ */
+let useWebFonts = false;
+
+let timeoutId;
+
+try {
+useWebFonts = await Promise.race([
+loadWebFonts().then(() => true),
+new Promise(resolve => {
+timeoutId = setTimeout(() => resolve(false), 10000);
+})
+]);
+} catch (error) {
+console.warn("標準フォントで画像を生成します", error);
+} finally {
+clearTimeout(timeoutId);
+}
 
 
 /* タイトル */
-ctx.font = '700 64px "MPLUS Rounded"';
+ctx.font = useWebFonts
+? '700 64px "MPLUS Rounded"'
+: '700 64px sans-serif';
 ctx.fillStyle = "#493126";
 
 drawCenteredText(
@@ -1593,7 +1610,9 @@ size * 0.94
 
 
 /* ゴール時刻 */
-ctx.font = '400 40px "MPLUS"';
+ctx.font = useWebFonts
+? '400 40px "MPLUS"'
+: '400 40px sans-serif';
 ctx.fillStyle = "#493126";
 
 drawCenteredText(
